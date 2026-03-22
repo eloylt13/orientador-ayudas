@@ -49,7 +49,7 @@ export default function HomePage() {
     fd.append('file', f);
     if (docType) fd.append('documentType', docType);
     try {
-      const res = await fetch('/api/analyze', { method: 'POST', body: fd });
+      const res = await fetch('/api/evaluate', { method: 'POST', body: fd });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Error desconocido');
       if (data.documentType === 'desconocido') { setState('needs_type'); return; }
