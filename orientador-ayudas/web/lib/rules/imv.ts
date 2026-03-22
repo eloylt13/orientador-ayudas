@@ -9,8 +9,7 @@ const DOCUMENTACION = [
   'Libro de familia (si hay menores)',
   'Certificado de convivencia',
 ];
-const ENLACE_OFICIAL =
-  'https://www.seg-social.es/wps/portal/wss/internet/InformacionUtil/44539/44616';
+const ENLACE_OFICIAL = 'https://imv.seg-social.es';
 const ULTIMA_REVISION = 'marzo 2026';
 const AVISO_PRESTACIONES =
   'Ten en cuenta que las prestaciones por desempleo (paro o subsidio) se contabilizan como ingresos a efectos del IMV.';

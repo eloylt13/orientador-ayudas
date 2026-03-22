@@ -2,9 +2,8 @@ export const AYUDAS_CATALOG = {
   imv: {
     nombre: 'Ingreso Mínimo Vital (IMV)',
     organismo: 'Seguridad Social',
-    enlaceSolicitud: 'https://sede.seg-social.gob.es',
-    enlaceInfo:
-      'https://www.seg-social.es/wps/portal/wss/internet/InformacionUtil/44539/44616',
+    enlaceSolicitud: 'https://imv.seg-social.es',
+    enlaceInfo: 'https://imv.seg-social.es',
     ultimaRevision: 'marzo 2026',
     baseNormativa: 'RD-Ley 20/2020 y Ley 19/2021',
     plazoHabitual:
