@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, type CSSProperties } from 'react'
+import { useRef, useState, type CSSProperties } from 'react'
 import type { UserProfile } from '../types/profile'
 import type { EligibilityResult } from '../types/result'
 import {
@@ -75,6 +75,7 @@ export function EligibilityWizard({
   onResultados,
   onLoading,
 }: Props) {
+  const wizardRef = useRef<HTMLDivElement>(null)
   const [perfil, setPerfil] = useState<Partial<UserProfile>>({})
   const [paso, setPaso] = useState(0)
   const [noSe, setNoSe] = useState<Record<string, boolean>>({})
@@ -90,7 +91,7 @@ export function EligibilityWizard({
     setPaso((currentPaso) => currentPaso + 1)
 
     if (typeof window !== 'undefined') {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      wizardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
   }
 
@@ -323,7 +324,7 @@ export function EligibilityWizard({
         padding: '24px 0',
       }}
     >
-      <div style={containerStyle}>
+      <div ref={wizardRef} style={containerStyle}>
         <div style={{ marginBottom: '24px' }}>
           <div
             style={{
