@@ -71,7 +71,7 @@ function getSelectorValue(
   return (SELECTOR_VALUE_MAP[field]?.[option] ?? option) as UserProfile[keyof UserProfile]
 }
 
-export default function EligibilityWizard({
+export function EligibilityWizard({
   onResultados,
   onLoading,
 }: Props) {
@@ -475,3 +475,5 @@ export default function EligibilityWizard({
     </section>
   )
 }
+
+export default EligibilityWizard

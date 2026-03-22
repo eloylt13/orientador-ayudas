@@ -141,7 +141,7 @@ export const PREGUNTAS: Pregunta[] = [
     tipo: 'booleano',
     permitirNoSe: false,
     condicion: (perfil) =>
-      perfil.ingresosMensualesHogar !== null && perfil.ingresosMensualesHogar <= 1,
+      perfil.ingresosMensualesHogar != null && perfil.ingresosMensualesHogar <= 1,
   },
   {
     id: 'administradorSociedad',
@@ -150,7 +150,7 @@ export const PREGUNTAS: Pregunta[] = [
     tipo: 'booleano',
     permitirNoSe: false,
     condicion: (perfil) =>
-      perfil.ingresosMensualesHogar !== null && perfil.ingresosMensualesHogar <= 1,
+      perfil.ingresosMensualesHogar != null && perfil.ingresosMensualesHogar <= 1,
   },
   {
     id: 'menoresACargo',
@@ -159,7 +159,7 @@ export const PREGUNTAS: Pregunta[] = [
     tipo: 'booleano',
     permitirNoSe: false,
     condicion: (perfil) =>
-      perfil.ingresosMensualesHogar !== null && perfil.ingresosMensualesHogar <= 1,
+      perfil.ingresosMensualesHogar != null && perfil.ingresosMensualesHogar <= 1,
   },
 ];
 

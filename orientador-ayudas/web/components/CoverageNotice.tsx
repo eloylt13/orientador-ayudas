@@ -1,4 +1,4 @@
-export default function CoverageNotice() {
+export function CoverageNotice() {
   return (
     <section
       aria-label="Aviso sobre el alcance de la herramienta"
@@ -89,3 +89,5 @@ export default function CoverageNotice() {
     </section>
   )
 }
+
+export default CoverageNotice

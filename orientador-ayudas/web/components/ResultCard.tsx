@@ -47,7 +47,7 @@ const legalStyle: CSSProperties = {
   margin: 0,
 }
 
-export default function ResultCard({ resultado }: Props) {
+export function ResultCard({ resultado }: Props) {
   const badgeStyle = BADGE_STYLES[resultado.badge]
 
   return (
@@ -219,3 +219,5 @@ export default function ResultCard({ resultado }: Props) {
     </article>
   )
 }
+
+export default ResultCard
