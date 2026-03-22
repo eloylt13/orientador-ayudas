@@ -1,14 +1,12 @@
-import type { MetadataRoute } from "next";
-
-const baseUrl = "https://revisor-contrato-practicas.vercel.app";
+import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: baseUrl,
+      url: 'https://orientador-ayudas.vercel.app',
       lastModified: new Date(),
-      changeFrequency: "monthly",
+      changeFrequency: 'monthly',
       priority: 1,
     },
-  ];
+  ]
 }

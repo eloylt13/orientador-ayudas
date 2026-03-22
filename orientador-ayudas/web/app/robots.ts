@@ -1,15 +1,8 @@
-import type { MetadataRoute } from "next";
+import { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = "https://revisor-contrato-habitacion.vercel.app";
-
   return {
-    rules: {
-      userAgent: "*",
-      allow: "/",
-      disallow: "/api/",
-    },
-    sitemap: `${baseUrl}/sitemap.xml`,
-  };
+    rules: { userAgent: '*', allow: '/' },
+    sitemap: 'https://orientador-ayudas.vercel.app/sitemap.xml',
+  }
 }
-

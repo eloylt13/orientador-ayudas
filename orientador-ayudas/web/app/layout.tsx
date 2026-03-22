@@ -1,60 +1,69 @@
-import type { Metadata } from 'next';
-import { Analytics } from '@vercel/analytics/react';
-import './globals.css';
-
-const baseUrl = 'https://revisor-contrato-practicas.vercel.app';
+import type { Metadata } from 'next'
+import { Analytics } from '@vercel/analytics/react'
+import './globals.css'
 
 export const metadata: Metadata = {
-  metadataBase: new URL(baseUrl),
-  title: 'Revisor de contratos de prácticas | Detecta cláusulas ilegales gratis',
+  title: '¿Qué ayudas del Estado me corresponden? | Orientador de Ayudas',
   description:
-    'Sube tu contrato o convenio de prácticas en PDF y detectamos cláusulas ilegales o abusivas antes de que lo firmes. Gratis, sin registro, para estudiantes y recién titulados en España.',
+    'Descubre en 2 minutos las ayudas estatales para las que podrías encajar según tu situación. IMV, prestación por desempleo y subsidio. Sin registro ni DNI.',
   keywords: [
-    'revisar contrato prácticas',
-    'contrato prácticas ilegal',
-    'contrato becario abusivo',
-    'convenio prácticas universitarias',
-    'contrato formativo cláusulas abusivas',
-    'contrato en prácticas España',
-    'revisar convenio prácticas PDF',
-    'mis prácticas son legales',
-    'contrato formativo práctica profesional',
-    'prácticas no laborales derechos',
-    'ET art 11 prácticas',
-    'Ley 32/2021 contrato formativo',
-    'RD 592/2014 prácticas universitarias',
+    'ayudas del estado',
+    'qué ayudas me corresponden',
+    'ingreso mínimo vital',
+    'prestación desempleo',
+    'subsidio desempleo',
+    'ayudas sociales España',
   ],
-  alternates: {
-    canonical: baseUrl,
-  },
   openGraph: {
-    type: 'website',
-    url: baseUrl,
-    title: 'Revisor de contratos de prácticas — Detecta cláusulas ilegales',
+    title: '¿Qué ayudas del Estado te corresponden?',
     description:
-      'Analiza tu contrato o convenio de prácticas en PDF y detecta cláusulas abusivas antes de firmarlo. Herramienta gratuita para estudiantes en España.',
-    siteName: 'Revisor de Contratos de Prácticas',
+      'Orientador gratuito de ayudas estatales. Responde 8 preguntas y descubre si encajas en el IMV, la prestación contributiva o el subsidio por desempleo.',
+    url: 'https://orientador-ayudas.vercel.app',
+    siteName: 'Orientador de Ayudas del Estado',
     locale: 'es_ES',
+    type: 'website',
   },
-  twitter: {
-    card: 'summary',
-    title: 'Revisor de contratos de prácticas — Detecta cláusulas ilegales',
-    description:
-      'Sube tu contrato de prácticas en PDF y detectamos cláusulas ilegales gratis. Para estudiantes en España.',
+  alternates: {
+    canonical: 'https://orientador-ayudas.vercel.app',
   },
   robots: {
     index: true,
     follow: true,
   },
-  verification: {
-    google: '6Cr92jGfY8D6cZX4sdEC1v1vECb_mgjBy8Jd9qoUfI4',
-  },
-};
+}
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es">
-      <body>{children}<Analytics /></body>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@400;500;600&display=swap"
+          rel="stylesheet"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebApplication',
+              name: 'Orientador de Ayudas del Estado',
+              description:
+                'Herramienta gratuita para descubrir ayudas estatales según tu situación personal',
+              url: 'https://orientador-ayudas.vercel.app',
+              applicationCategory: 'GovernmentService',
+              inLanguage: 'es',
+              isAccessibleForFree: true,
+              offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
+            }),
+          }}
+        />
+      </head>
+      <body style={{ margin: 0, padding: 0, fontFamily: "'DM Sans', sans-serif" }}>
+        {children}
+        <Analytics />
+      </body>
     </html>
-  );
+  )
 }
