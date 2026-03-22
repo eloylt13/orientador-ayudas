@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --parchment: #F5F1E8;
+  --parchment-dark: #EDE8DC;
+  --ink: #1A1A2E;
+  --ink-light: #3D3D5C;
+  --crimson: #B03030;
+  --crimson-light: #FCF0F0;
+  --amber: #C47A1A;
+  --amber-light: #FEF8EC;
+  --cobalt: #1A4A7A;
+  --cobalt-light: #EEF4FC;
+  --emerald: #1A6640;
+  --emerald-light: #EDFAF3;
+  --orange: #C45A1A;
+  --orange-light: #FEF3EC;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--parchment);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Grain overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+.font-display {
+  font-family: 'Playfair Display', serif;
+}
+
+/* Upload zone */
+.drop-zone {
+  border: 2px dashed #C8C0B0;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.drop-zone:hover,
+.drop-zone.active {
+  border-color: var(--ink);
+  background-color: var(--parchment-dark);
+}
+
+/* Fade-in animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  animation: fadeUp 0.5s ease forwards;
+}
+
+.fade-up-1 {
+  animation-delay: 0.05s;
+  opacity: 0;
+}
+
+.fade-up-2 {
+  animation-delay: 0.15s;
+  opacity: 0;
+}
+
+.fade-up-3 {
+  animation-delay: 0.25s;
+  opacity: 0;
+}
+
+.fade-up-4 {
+  animation-delay: 0.35s;
+  opacity: 0;
+}
+
+/* Pulse loader */
+@keyframes pulse-dot {
+
+  0%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.4;
+  }
+
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+.dot-1 {
+  animation: pulse-dot 1.2s ease infinite;
+}
+
+.dot-2 {
+  animation: pulse-dot 1.2s ease infinite 0.2s;
+}
+
+.dot-3 {
+  animation: pulse-dot 1.2s ease infinite 0.4s;
+}
+
+/* Risk card left border */
+.risk-red {
+  border-left: 4px solid var(--crimson);
+}
+
+.risk-yellow {
+  border-left: 4px solid var(--amber);
+}
+
+.risk-weak {
+  border-left: 4px solid var(--cobalt);
+}
+
+/* Divider line */
+.ruled-line {
+  border: none;
+  border-top: 1px solid #D8D0C0;
+  margin: 0;
+}
