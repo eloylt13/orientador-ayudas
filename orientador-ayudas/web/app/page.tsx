@@ -63,6 +63,10 @@ export default function HomePage() {
   const resetear = () => {
     setResultados(null)
     setLoading(false)
+
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
   }
 
   return (
@@ -281,6 +285,27 @@ export default function HomePage() {
               ))}
 
               <CoverageNotice />
+
+              <button
+                type="button"
+                onClick={resetear}
+                style={{
+                  position: 'fixed',
+                  bottom: '24px',
+                  right: '24px',
+                  background: '#2A1F3D',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '50px',
+                  padding: '12px 20px',
+                  cursor: 'pointer',
+                  fontSize: '14px',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+                  zIndex: 1000,
+                }}
+              >
+                ↺ Nueva consulta
+              </button>
             </div>
           )}
         </section>

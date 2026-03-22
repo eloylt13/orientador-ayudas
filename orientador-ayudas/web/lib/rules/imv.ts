@@ -54,6 +54,26 @@ function obtenerComposicionHogar(perfil: Partial<UserProfile>): {
   return { adultos, menores };
 }
 
+function obtenerDescripcionHogar(perfil: Partial<UserProfile>): string | null {
+  const { adultos, menores } = obtenerComposicionHogar(perfil);
+
+  if (adultos === null || menores === null) {
+    return null;
+  }
+
+  const partes: string[] = [];
+
+  if (adultos > 0) {
+    partes.push(`${adultos} adulto${adultos === 1 ? '' : 's'}`);
+  }
+
+  if (menores > 0) {
+    partes.push(`${menores} menor${menores === 1 ? '' : 'es'}`);
+  }
+
+  return partes.join(' y ');
+}
+
 function obtenerUmbralIngresosIMV(perfil: Partial<UserProfile>): number | null {
   const { adultos, menores } = obtenerComposicionHogar(perfil);
 
@@ -153,11 +173,15 @@ function obtenerDatoFaltante(perfil: Partial<UserProfile>): string | null {
     return 'Confirma el tramo de patrimonio total del hogar.';
   }
 
-  if (
-    perfil.ingresosMensualesHogar === 1 &&
-    perfil.convivencia === 'solo'
-  ) {
-    return 'Tus ingresos del hogar están en un tramo límite para una unidad de 1 adulto; habría que confirmar el importe mensual exacto.';
+  if (obtenerNivelIngresosIMV(perfil) === 'limite') {
+    const umbral = obtenerUmbralIngresosIMV(perfil);
+    const descripcionHogar = obtenerDescripcionHogar(perfil);
+
+    if (umbral !== null && descripcionHogar !== null) {
+      return `Tus ingresos están cerca del límite. El umbral del IMV para tu hogar es de ${umbral.toFixed(2).replace('.', ',')} €/mes (${descripcionHogar}). Comprueba el importe exacto en la sede oficial.`;
+    }
+
+    return 'Tus ingresos están cerca del límite del IMV. Comprueba el importe exacto aplicable a tu hogar en la sede oficial.';
   }
 
   if (perfil.patrimonioHogar === 2) {

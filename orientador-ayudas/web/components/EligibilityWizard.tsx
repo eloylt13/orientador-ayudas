@@ -88,6 +88,10 @@ export function EligibilityWizard({
 
   const avanzar = () => {
     setPaso((currentPaso) => currentPaso + 1)
+
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
   }
 
   const responder = (
@@ -339,7 +343,7 @@ export function EligibilityWizard({
                 textTransform: 'uppercase',
               }}
             >
-              Paso {Math.min(paso + 1, totalPreguntas)} de {totalPreguntas}
+              Progreso
             </span>
             <span
               style={{
@@ -368,6 +372,31 @@ export function EligibilityWizard({
                 width: `${progreso}%`,
               }}
             />
+          </div>
+          <div style={{ marginTop: '10px' }}>
+            <p
+              style={{
+                color: '#6B6256',
+                fontSize: '12px',
+                lineHeight: 1.5,
+                margin: 0,
+              }}
+            >
+              Pregunta {Math.min(paso + 1, preguntasActivas.length || 1)} de{' '}
+              {preguntasActivas.length}
+            </p>
+            {preguntasActivas.length > 9 ? (
+              <p
+                style={{
+                  color: '#6B6256',
+                  fontSize: '12px',
+                  lineHeight: 1.5,
+                  margin: '6px 0 0',
+                }}
+              >
+                Algunas preguntas adicionales aparecen según tus respuestas
+              </p>
+            ) : null}
           </div>
         </div>
 
