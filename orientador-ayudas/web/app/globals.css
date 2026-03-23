@@ -282,3 +282,44 @@ body::before {
     padding-left: 1.15rem;
   }
 }
+
+@media print {
+  /* Ocultar elementos que no deben imprimirse */
+  header,
+  nav,
+  footer,
+  button,
+  .no-print {
+    display: none !important;
+  }
+
+  /* Mostrar solo el bloque de resultados */
+  .print-only {
+    display: block !important;
+  }
+
+  body {
+    background: white !important;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: #111;
+  }
+
+  body::before {
+    display: none !important;
+  }
+
+  .result-card {
+    break-inside: avoid;
+    border: 1px solid #ccc !important;
+    margin-bottom: 16px;
+    padding: 16px;
+    border-radius: 8px;
+  }
+
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 11px;
+    color: #666;
+  }
+}

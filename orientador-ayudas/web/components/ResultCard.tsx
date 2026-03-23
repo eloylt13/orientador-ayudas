@@ -51,7 +51,7 @@ export function ResultCard({ resultado }: Props) {
   const badgeStyle = BADGE_STYLES[resultado.badge]
 
   return (
-    <article style={cardStyle}>
+    <article className="result-card" style={cardStyle}>
       <header
         style={{
           alignItems: 'center',

@@ -82,6 +82,10 @@ export default function HomePage() {
   const [loading, setLoading] = useState(false)
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0)
 
+  const descargarPDF = () => {
+    window.print()
+  }
+
   const resetear = () => {
     setResultados(null)
     setLoading(false)
@@ -304,23 +308,62 @@ export default function HomePage() {
                     Resultado de tu consulta
                   </h2>
                 </div>
-                <button
-                  type="button"
-                  onClick={resetear}
+                <div
                   style={{
-                    background: 'transparent',
-                    border: '1px solid #B8AF9F',
-                    borderRadius: '999px',
-                    color: '#2A1F3D',
-                    cursor: 'pointer',
-                    fontFamily: "'DM Sans', sans-serif",
-                    fontSize: '14px',
-                    fontWeight: 700,
-                    padding: '10px 16px',
+                    alignItems: 'center',
+                    display: 'flex',
+                    flexWrap: 'wrap',
                   }}
                 >
-                  ← Volver a empezar
-                </button>
+                  <button
+                    type="button"
+                    onClick={resetear}
+                    style={{
+                      background: 'transparent',
+                      border: '1px solid #B8AF9F',
+                      borderRadius: '999px',
+                      color: '#2A1F3D',
+                      cursor: 'pointer',
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontSize: '14px',
+                      fontWeight: 700,
+                      padding: '10px 16px',
+                    }}
+                  >
+                    ← Volver a empezar
+                  </button>
+                  <button
+                    type="button"
+                    onClick={descargarPDF}
+                    style={{
+                      background: '#F2EDE3',
+                      border: '1px solid #2A1F3D',
+                      color: '#2A1F3D',
+                      borderRadius: '8px',
+                      padding: '10px 20px',
+                      cursor: 'pointer',
+                      fontSize: '14px',
+                      marginLeft: '12px',
+                    }}
+                  >
+                    ⬇ Descargar PDF
+                  </button>
+                </div>
+              </div>
+
+              <div className="print-only" style={{ display: 'none', marginBottom: '24px' }}>
+                <h1 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '4px' }}>
+                  Orientador de Ayudas del Estado
+                </h1>
+                <p style={{ fontSize: '12px', color: '#666' }}>
+                  orientador-ayudas.vercel.app · Informe generado el{' '}
+                  {new Date().toLocaleDateString('es-ES')}
+                </p>
+                <p style={{ fontSize: '11px', color: '#888', marginTop: '4px' }}>
+                  Orientación informativa. No sustituye la solicitud oficial ni garantiza la
+                  concesión.
+                </p>
+                <hr style={{ margin: '12px 0', borderColor: '#ccc' }} />
               </div>
 
               {resultados.map((resultado) => (
@@ -356,7 +399,7 @@ export default function HomePage() {
           )}
         </section>
 
-        <section style={{ marginBottom: '56px' }}>
+        <section className="no-print" style={{ marginBottom: '56px' }}>
           <div style={{ marginBottom: '24px', maxWidth: '680px' }}>
             <p
               style={{
@@ -429,6 +472,7 @@ export default function HomePage() {
         </section>
 
         <section
+          className="no-print"
           style={{
             background: '#FAF7F2',
             border: '1px solid #DDD5C8',
@@ -529,7 +573,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section style={{ marginTop: '56px', marginBottom: '56px' }}>
+        <section className="no-print" style={{ marginTop: '56px', marginBottom: '56px' }}>
           <div style={{ marginBottom: '24px', maxWidth: '700px' }}>
             <p
               style={{
