@@ -55,6 +55,27 @@ const STEPS = [
   },
 ]
 
+const ABOUT_BLOCKS = [
+  {
+    title: '¿Quién la desarrolla?',
+    content:
+      'Esta herramienta es un proyecto independiente sin ánimo de lucro, desarrollado para facilitar el acceso a información sobre ayudas públicas en España. No está afiliada a ningún organismo oficial.',
+  },
+  {
+    title: 'Fuentes legales',
+    items: [
+      'Ley 19/2021, de 20 de diciembre, del Ingreso Mínimo Vital',
+      'Real Decreto Legislativo 8/2015 — Ley General de la Seguridad Social (art. 263-278)',
+      'Real Decreto Legislativo 8/2015 — Subsidio por desempleo (art. 274-277 bis)',
+    ],
+  },
+  {
+    title: 'Última actualización',
+    content:
+      'Reglas y umbrales revisados en marzo 2026. Los importes se actualizan anualmente. Consulta siempre la sede oficial para datos vigentes.',
+  },
+]
+
 export default function HomePage() {
   const [resultados, setResultados] = useState<EligibilityResult[] | null>(null)
   const [loading, setLoading] = useState(false)
@@ -481,6 +502,153 @@ export default function HomePage() {
                 </div>
               )
             })}
+          </div>
+        </section>
+
+        <section style={{ marginTop: '56px', marginBottom: '56px' }}>
+          <div style={{ marginBottom: '24px', maxWidth: '700px' }}>
+            <p
+              style={{
+                color: '#6B6256',
+                fontSize: '12px',
+                fontWeight: 700,
+                letterSpacing: '0.12em',
+                margin: '0 0 10px',
+                textTransform: 'uppercase',
+              }}
+            >
+              Contexto
+            </p>
+            <h2
+              style={{
+                fontFamily: "'Playfair Display', serif",
+                fontSize: 'clamp(1.9rem, 4vw, 2.7rem)',
+                lineHeight: 1.15,
+                margin: 0,
+              }}
+            >
+              Sobre esta herramienta
+            </h2>
+          </div>
+
+          <div
+            style={{
+              display: 'grid',
+              gap: '18px',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+              marginBottom: '22px',
+            }}
+          >
+            {ABOUT_BLOCKS.map((block) => (
+              <article
+                key={block.title}
+                style={{
+                  background: '#FFFFFF',
+                  border: '1px solid rgba(42, 31, 61, 0.08)',
+                  borderRadius: '22px',
+                  boxShadow: '0 10px 24px rgba(18, 17, 42, 0.06)',
+                  padding: '24px',
+                }}
+              >
+                <h3
+                  style={{
+                    color: '#1A1830',
+                    fontSize: '1.08rem',
+                    lineHeight: 1.35,
+                    margin: '0 0 12px',
+                  }}
+                >
+                  {block.title}
+                </h3>
+                {block.content ? (
+                  <p
+                    style={{
+                      color: '#5C544A',
+                      fontSize: '15px',
+                      lineHeight: 1.8,
+                      margin: 0,
+                    }}
+                  >
+                    {block.content}
+                  </p>
+                ) : (
+                  <ul
+                    style={{
+                      color: '#5C544A',
+                      fontSize: '15px',
+                      lineHeight: 1.8,
+                      margin: 0,
+                      paddingLeft: '18px',
+                    }}
+                  >
+                    {block.items?.map((item) => (
+                      <li key={item} style={{ marginBottom: '10px' }}>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </article>
+            ))}
+          </div>
+
+          <div
+            style={{
+              background: '#F2EDE3',
+              border: '1px solid #DDD5C8',
+              borderRadius: '22px',
+              padding: '18px 20px',
+            }}
+          >
+            <div
+              style={{
+                alignItems: 'center',
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: '14px 22px',
+                justifyContent: 'center',
+                marginBottom: '10px',
+              }}
+            >
+              <a
+                href="https://www.seg-social.es"
+                target="_blank"
+                rel="noreferrer"
+                style={{
+                  color: '#1A1830',
+                  fontSize: '15px',
+                  fontWeight: 700,
+                  textDecoration: 'none',
+                }}
+              >
+                🔵 Seguridad Social
+              </a>
+              <a
+                href="https://www.sepe.es"
+                target="_blank"
+                rel="noreferrer"
+                style={{
+                  color: '#1A1830',
+                  fontSize: '15px',
+                  fontWeight: 700,
+                  textDecoration: 'none',
+                }}
+              >
+                🔵 SEPE
+              </a>
+            </div>
+            <p
+              style={{
+                color: '#6B6256',
+                fontSize: '12px',
+                lineHeight: 1.7,
+                margin: 0,
+                textAlign: 'center',
+              }}
+            >
+              Esta herramienta se basa en información de organismos oficiales.
+              No está respaldada ni afiliada a ellos.
+            </p>
           </div>
         </section>
       </div>

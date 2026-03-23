@@ -446,6 +446,22 @@ export function EligibilityWizard({ onResultados, onLoading }: Props) {
               >
                 {preguntaActual.texto}
               </h2>
+              {preguntaActual.ayuda ? (
+                <div
+                  style={{
+                    fontSize: '13px',
+                    color: '#6B7280',
+                    background: '#F9F7F4',
+                    border: '1px solid #E5E0D8',
+                    borderRadius: '6px',
+                    padding: '8px 12px',
+                    marginBottom: '16px',
+                    lineHeight: '1.5',
+                  }}
+                >
+                  ℹ️ {preguntaActual.ayuda}
+                </div>
+              ) : null}
             </div>
 
             {renderOpciones()}
