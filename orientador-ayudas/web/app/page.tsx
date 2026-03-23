@@ -151,8 +151,9 @@ export default function HomePage() {
               maxWidth: '760px',
             }}
           >
-            Responde 8 preguntas y descubre en 2 minutos las ayudas estatales
-            para las que podrías encajar. Sin registro. Sin DNI.
+            Responde entre 6 y 12 preguntas según tu situación y descubre en
+            pocos minutos las ayudas estatales para las que podrías encajar. Sin
+            registro. Sin DNI.
           </p>
         </div>
       </header>
@@ -431,9 +432,7 @@ export default function HomePage() {
                 >
                   <button
                     type="button"
-                    onClick={() =>
-                      setOpenFaqIndex(isOpen ? null : index)
-                    }
+                    onClick={() => setOpenFaqIndex(isOpen ? null : index)}
                     style={{
                       alignItems: 'center',
                       background: 'transparent',

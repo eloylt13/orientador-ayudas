@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState, type CSSProperties } from 'react'
+import { useRef, useState, type CSSProperties, type ReactNode } from 'react'
 import type { UserProfile } from '../types/profile'
 import type { EligibilityResult } from '../types/result'
 import {
@@ -53,31 +53,30 @@ const optionButtonStyle: CSSProperties = {
   transition: 'background-color 0.2s ease',
 }
 
-const secondaryButtonStyle: CSSProperties = {
+const backButtonStyle: CSSProperties = {
   background: 'transparent',
-  border: '1px solid #B8AF9F',
-  borderRadius: '12px',
+  border: '1px solid #2A1F3D',
   color: '#2A1F3D',
+  borderRadius: '8px',
+  padding: '10px 20px',
   cursor: 'pointer',
   fontSize: '14px',
-  fontWeight: 600,
-  padding: '10px 16px',
+  marginRight: '12px',
 }
 
 function getSelectorValue(
   field: keyof UserProfile,
   option: string,
 ): UserProfile[keyof UserProfile] {
-  return (SELECTOR_VALUE_MAP[field]?.[option] ?? option) as UserProfile[keyof UserProfile]
+  return (SELECTOR_VALUE_MAP[field]?.[option] ??
+    option) as UserProfile[keyof UserProfile]
 }
 
-export function EligibilityWizard({
-  onResultados,
-  onLoading,
-}: Props) {
+export function EligibilityWizard({ onResultados, onLoading }: Props) {
   const wizardRef = useRef<HTMLDivElement>(null)
   const [perfil, setPerfil] = useState<Partial<UserProfile>>({})
   const [paso, setPaso] = useState(0)
+  const [historial, setHistorial] = useState<number[]>([])
   const [noSe, setNoSe] = useState<Record<string, boolean>>({})
   const [numeroInputs, setNumeroInputs] = useState<Record<string, string>>({})
 
@@ -88,11 +87,19 @@ export function EligibilityWizard({
     totalPreguntas === 0 ? 100 : Math.min((paso / totalPreguntas) * 100, 100)
 
   const avanzar = () => {
+    setHistorial((prev) => [...prev, paso])
     setPaso((currentPaso) => currentPaso + 1)
 
     if (typeof window !== 'undefined') {
       wizardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
+  }
+
+  const handleAtras = () => {
+    if (historial.length === 0) return
+    const pasoAnterior = historial[historial.length - 1]
+    setHistorial((prev) => prev.slice(0, -1))
+    setPaso(pasoAnterior)
   }
 
   const responder = (
@@ -149,6 +156,17 @@ export function EligibilityWizard({
     }
   }
 
+  const renderAccion = (button: ReactNode) => (
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      {historial.length > 0 ? (
+        <button type="button" onClick={handleAtras} style={backButtonStyle}>
+          ← Atrás
+        </button>
+      ) : null}
+      <div style={{ flex: 1 }}>{button}</div>
+    </div>
+  )
+
   const renderOpciones = () => {
     if (!preguntaActual) {
       return null
@@ -157,32 +175,36 @@ export function EligibilityWizard({
     if (preguntaActual.tipo === 'booleano') {
       return (
         <div style={{ display: 'grid', gap: '12px' }}>
-          <button
-            type="button"
-            style={optionButtonStyle}
-            onClick={() => responder(preguntaActual.id, true)}
-            onMouseEnter={(event) => {
-              event.currentTarget.style.background = '#12112A'
-            }}
-            onMouseLeave={(event) => {
-              event.currentTarget.style.background = '#2A1F3D'
-            }}
-          >
-            Sí
-          </button>
-          <button
-            type="button"
-            style={optionButtonStyle}
-            onClick={() => responder(preguntaActual.id, false)}
-            onMouseEnter={(event) => {
-              event.currentTarget.style.background = '#12112A'
-            }}
-            onMouseLeave={(event) => {
-              event.currentTarget.style.background = '#2A1F3D'
-            }}
-          >
-            No
-          </button>
+          {renderAccion(
+            <button
+              type="button"
+              style={optionButtonStyle}
+              onClick={() => responder(preguntaActual.id, true)}
+              onMouseEnter={(event) => {
+                event.currentTarget.style.background = '#12112A'
+              }}
+              onMouseLeave={(event) => {
+                event.currentTarget.style.background = '#2A1F3D'
+              }}
+            >
+              Sí
+            </button>,
+          )}
+          {renderAccion(
+            <button
+              type="button"
+              style={optionButtonStyle}
+              onClick={() => responder(preguntaActual.id, false)}
+              onMouseEnter={(event) => {
+                event.currentTarget.style.background = '#12112A'
+              }}
+              onMouseLeave={(event) => {
+                event.currentTarget.style.background = '#2A1F3D'
+              }}
+            >
+              No
+            </button>,
+          )}
         </div>
       )
     }
@@ -191,25 +213,28 @@ export function EligibilityWizard({
       return (
         <div style={{ display: 'grid', gap: '12px' }}>
           {preguntaActual.opciones?.map((opcion) => (
-            <button
-              key={opcion}
-              type="button"
-              style={optionButtonStyle}
-              onClick={() =>
-                responder(
-                  preguntaActual.id,
-                  getSelectorValue(preguntaActual.id, opcion),
-                )
-              }
-              onMouseEnter={(event) => {
-                event.currentTarget.style.background = '#12112A'
-              }}
-              onMouseLeave={(event) => {
-                event.currentTarget.style.background = '#2A1F3D'
-              }}
-            >
-              {opcion}
-            </button>
+            <div key={opcion}>
+              {renderAccion(
+                <button
+                  type="button"
+                  style={optionButtonStyle}
+                  onClick={() =>
+                    responder(
+                      preguntaActual.id,
+                      getSelectorValue(preguntaActual.id, opcion),
+                    )
+                  }
+                  onMouseEnter={(event) => {
+                    event.currentTarget.style.background = '#12112A'
+                  }}
+                  onMouseLeave={(event) => {
+                    event.currentTarget.style.background = '#2A1F3D'
+                  }}
+                >
+                  {opcion}
+                </button>,
+              )}
+            </div>
           ))}
         </div>
       )
@@ -228,27 +253,31 @@ export function EligibilityWizard({
       return (
         <div style={{ display: 'grid', gap: '12px' }}>
           {rangosDisponibles.map((rango, index) => (
-            <button
-              key={rango}
-              type="button"
-              style={optionButtonStyle}
-              onClick={() => responder(preguntaActual.id, index)}
-              onMouseEnter={(event) => {
-                event.currentTarget.style.background = '#12112A'
-              }}
-              onMouseLeave={(event) => {
-                event.currentTarget.style.background = '#2A1F3D'
-              }}
-            >
-              {rango}
-            </button>
+            <div key={rango}>
+              {renderAccion(
+                <button
+                  type="button"
+                  style={optionButtonStyle}
+                  onClick={() => responder(preguntaActual.id, index)}
+                  onMouseEnter={(event) => {
+                    event.currentTarget.style.background = '#12112A'
+                  }}
+                  onMouseLeave={(event) => {
+                    event.currentTarget.style.background = '#2A1F3D'
+                  }}
+                >
+                  {rango}
+                </button>,
+              )}
+            </div>
           ))}
         </div>
       )
     }
 
     const valorInput = numeroInputs[preguntaActual.id] ?? ''
-    const numeroValido = valorInput.trim() !== '' && !Number.isNaN(Number(valorInput))
+    const numeroValido =
+      valorInput.trim() !== '' && !Number.isNaN(Number(valorInput))
 
     return (
       <form
@@ -295,24 +324,26 @@ export function EligibilityWizard({
             padding: '14px 16px',
           }}
         />
-        <button
-          type="submit"
-          disabled={!numeroValido}
-          style={{
-            ...optionButtonStyle,
-            opacity: numeroValido ? 1 : 0.6,
-          }}
-          onMouseEnter={(event) => {
-            if (numeroValido) {
-              event.currentTarget.style.background = '#12112A'
-            }
-          }}
-          onMouseLeave={(event) => {
-            event.currentTarget.style.background = '#2A1F3D'
-          }}
-        >
-          Continuar
-        </button>
+        {renderAccion(
+          <button
+            type="submit"
+            disabled={!numeroValido}
+            style={{
+              ...optionButtonStyle,
+              opacity: numeroValido ? 1 : 0.6,
+            }}
+            onMouseEnter={(event) => {
+              if (numeroValido) {
+                event.currentTarget.style.background = '#12112A'
+              }
+            }}
+            onMouseLeave={(event) => {
+              event.currentTarget.style.background = '#2A1F3D'
+            }}
+          >
+            Continuar
+          </button>,
+        )}
       </form>
     )
   }
@@ -482,25 +513,6 @@ export function EligibilityWizard({
             </button>
           </div>
         )}
-
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: paso > 0 ? 'space-between' : 'flex-end',
-            gap: '12px',
-            marginTop: '24px',
-          }}
-        >
-          {paso > 0 ? (
-            <button
-              type="button"
-              onClick={() => setPaso((currentPaso) => Math.max(0, currentPaso - 1))}
-              style={secondaryButtonStyle}
-            >
-              Atrás
-            </button>
-          ) : null}
-        </div>
       </div>
     </section>
   )
