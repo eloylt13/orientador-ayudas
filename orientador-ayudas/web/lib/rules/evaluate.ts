@@ -3,6 +3,7 @@ import { EligibilityResult } from '../../types/result';
 import { evaluarIMV } from './imv';
 import { evaluarSepeContributiva } from './sepeContributiva';
 import { evaluarSepeSubsidio } from './sepeSubsidio';
+import { evaluarSepeSubsidio52 } from './sepeSubsidio52';
 
 const BADGE_PRIORITY: Record<EligibilityResult['badge'], number> = {
   verde: 0,
@@ -18,6 +19,7 @@ export function evaluarPerfil(
     evaluarIMV(perfil),
     evaluarSepeContributiva(perfil),
     evaluarSepeSubsidio(perfil),
+    evaluarSepeSubsidio52(perfil),
   ];
 }
 

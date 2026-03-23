@@ -31,6 +31,17 @@ export const AYUDAS_CATALOG = {
     plazoHabitual:
       'Solicitar en los 15 días hábiles siguientes al fin de la situación legal de desempleo',
   },
+  sepeSubsidio52: {
+    nombre: 'Subsidio por desempleo para mayores de 52 años',
+    organismo: 'SEPE',
+    enlaceSolicitud: 'https://sede.sepe.gob.es',
+    enlaceInfo:
+      'https://www.sepe.es/HomeSepe/Personas/distributiva-prestaciones/subsidio-desempleo.html',
+    ultimaRevision: 'marzo 2026',
+    baseNormativa: 'LGSS art. 274 d)',
+    plazoHabitual:
+      'Solicitar en los 15 días hábiles siguientes al fin de la prestación contributiva',
+  },
 } as const;
 
 export type AyudaKey = keyof typeof AYUDAS_CATALOG;

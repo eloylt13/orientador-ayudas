@@ -148,6 +148,21 @@ export const PREGUNTAS: Pregunta[] = [
     condicion: (perfil) => perfil.situacion === 'paro',
   },
   {
+    id: 'agotadoPrestacion',
+    rama: 'desempleo',
+    texto:
+      '¿Has agotado recientemente una prestación contributiva por desempleo?',
+    ayuda:
+      'El subsidio para mayores de 52 años puede solicitarse al agotar la prestación contributiva o al no tener derecho a ella por cotización insuficiente',
+    tipo: 'booleano',
+    permitirNoSe: false,
+    condicion: (perfil) =>
+      perfil.situacion === 'paro' &&
+      perfil.edad !== null &&
+      perfil.edad !== undefined &&
+      perfil.edad >= 52,
+  },
+  {
     id: 'inscritoDemandante',
     rama: 'desempleo',
     texto: '\u00BFEst\u00E1s inscrito como demandante de empleo en el SEPE?',
@@ -156,6 +171,21 @@ export const PREGUNTAS: Pregunta[] = [
     tipo: 'booleano',
     permitirNoSe: false,
     condicion: (perfil) => perfil.situacion === 'paro',
+  },
+  {
+    id: 'responsabilidadesFamiliares',
+    rama: 'desempleo',
+    texto:
+      '¿Tienes hijos menores de 26 años a tu cargo o familiares con discapacidad que dependan de ti?',
+    ayuda:
+      'Las responsabilidades familiares son un requisito alternativo a la edad para algunas modalidades del subsidio',
+    tipo: 'booleano',
+    permitirNoSe: false,
+    condicion: (perfil) =>
+      perfil.situacion === 'paro' &&
+      perfil.edad !== null &&
+      perfil.edad !== undefined &&
+      perfil.edad >= 52,
   },
   {
     id: 'unidadConvivencia6meses',
