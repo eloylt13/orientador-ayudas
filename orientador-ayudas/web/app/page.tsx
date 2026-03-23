@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { EligibilityResult } from '../types/result'
 import { EligibilityWizard } from '../components/EligibilityWizard'
 import { ResultCard } from '../components/ResultCard'
@@ -176,6 +177,29 @@ export default function HomePage() {
             pocos minutos las ayudas estatales para las que podrías encajar. Sin
             registro. Sin DNI.
           </p>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              marginTop: '24px',
+            }}
+          >
+            <Link
+              href="/blog"
+              style={{
+                border: '1px solid rgba(255,255,255,0.24)',
+                borderRadius: '999px',
+                color: '#FFFFFF',
+                display: 'inline-flex',
+                fontSize: '14px',
+                fontWeight: 700,
+                padding: '12px 18px',
+                textDecoration: 'none',
+              }}
+            >
+              Leer guías del blog
+            </Link>
+          </div>
         </div>
       </header>
 
@@ -668,6 +692,14 @@ export default function HomePage() {
           <p style={{ margin: '0 0 6px' }}>
             Orientación informativa basada en fuentes oficiales · No sustituye
             la solicitud oficial · Última revisión: marzo 2026
+          </p>
+          <p style={{ margin: '0 0 10px' }}>
+            <Link
+              href="/blog"
+              style={{ color: '#FFFFFF', textDecoration: 'underline' }}
+            >
+              Blog y guías →
+            </Link>
           </p>
           <p style={{ margin: 0 }}>
             Otras herramientas:{' '}

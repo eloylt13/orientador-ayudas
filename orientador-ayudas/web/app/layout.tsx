@@ -3,6 +3,7 @@ import { Analytics } from '@vercel/analytics/react'
 import './globals.css'
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://orientador-ayudas.vercel.app'),
   title: '¿Qué ayudas del Estado me corresponden? | Orientador de Ayudas',
   description:
     'Descubre en 2 minutos las ayudas estatales para las que podrías encajar según tu situación. IMV, prestación por desempleo y subsidio. Sin registro ni DNI.',
