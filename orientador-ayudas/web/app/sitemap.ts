@@ -14,7 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: 'https://orientador-ayudas.vercel.app/blog',
       lastModified: new Date(),
-      changeFrequency: 'weekly',
+      changeFrequency: 'weekly' as const,
       priority: 0.8,
     },
     ...blogPosts.map((post) => ({

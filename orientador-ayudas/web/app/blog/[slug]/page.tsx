@@ -104,7 +104,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               textTransform: 'uppercase',
             }}
           >
-            Blog y guias
+            Blog y guías
           </p>
           <div
             style={{
@@ -290,6 +290,63 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </p>
         </div>
       </footer>
+
+      <div style={{ background: '#FFFFFF', fontFamily: "'DM Sans', sans-serif" }}>
+        <div
+          style={{
+            alignItems: 'center',
+            borderTop: '1px solid #e5e7eb',
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '1rem',
+            justifyContent: 'space-between',
+            margin: '0 auto',
+            maxWidth: '980px',
+            padding: '1.5rem 20px',
+          }}
+        >
+          <div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              alt="IAMagica"
+              src="/logo-iamagica.png"
+              style={{ display: 'block', height: '28px' }}
+            />
+            <span
+              style={{ color: '#9ca3af', display: 'block', fontSize: '12px', marginTop: '4px' }}
+            >
+              © 2026 IAMagica
+            </span>
+          </div>
+          <div style={{ textAlign: 'right' }}>
+            <span
+              style={{
+                color: '#1B4332',
+                display: 'block',
+                fontSize: '12px',
+                fontWeight: 600,
+                letterSpacing: '0.5px',
+              }}
+            >
+              DIGITALIZA TU NEGOCIO
+            </span>
+            <a
+              href="mailto:info@iamagica.es"
+              style={{
+                alignItems: 'center',
+                color: '#6b7280',
+                display: 'inline-flex',
+                gap: '6px',
+                marginTop: '4px',
+                textDecoration: 'none',
+              }}
+            >
+              <span style={{ fontSize: '20px' }}>✉</span>
+              <span>info@iamagica.es</span>
+            </a>
+          </div>
+        </div>
+      </div>
     </main>
   )
 }
