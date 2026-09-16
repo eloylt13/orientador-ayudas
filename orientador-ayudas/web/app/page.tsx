@@ -399,6 +399,33 @@ export default function HomePage() {
           )}
         </section>
 
+        <aside
+          aria-label="Publicidad · IAMagica"
+          className="iamagica-promo no-print"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            alt="IAMagica"
+            className="iamagica-promo-logo"
+            src="/iamagica-logo.png"
+          />
+          <div className="iamagica-promo-content">
+            <p className="iamagica-promo-label">Publicidad · IAMagica</p>
+            <p className="iamagica-promo-title">¿Tienes un negocio?</p>
+            <p className="iamagica-promo-description">
+              Crea y edita tu web desde WhatsApp.
+            </p>
+            <a
+              className="iamagica-promo-link"
+              href="https://iamagica.es/?utm_source=orientadorayudas&utm_medium=referral&utm_campaign=webs_propias&utm_content=post_cuestionario"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Descubre IAMagica →
+            </a>
+          </div>
+        </aside>
+
         <section className="no-print" style={{ marginBottom: '56px' }}>
           <div style={{ marginBottom: '24px', maxWidth: '680px' }}>
             <p
@@ -835,6 +862,94 @@ export default function HomePage() {
       </div>
 
       <style jsx>{`
+        .iamagica-promo {
+          align-items: center;
+          background: #faf7f2;
+          border: 1px solid rgba(42, 31, 61, 0.14);
+          border-radius: 18px;
+          box-shadow: 0 8px 20px rgba(18, 17, 42, 0.06);
+          display: flex;
+          gap: 14px;
+          margin: 0 22px 56px auto;
+          max-width: 340px;
+          padding: 14px 16px;
+          width: 100%;
+        }
+
+        .iamagica-promo-logo {
+          display: block;
+          flex: 0 0 44px;
+          height: 44px;
+          object-fit: contain;
+          width: 44px;
+        }
+
+        .iamagica-promo-content {
+          min-width: 0;
+        }
+
+        .iamagica-promo-label,
+        .iamagica-promo-title,
+        .iamagica-promo-description {
+          margin: 0;
+        }
+
+        .iamagica-promo-label {
+          color: #6b6256;
+          font-size: 10px;
+          font-weight: 700;
+          letter-spacing: 0.08em;
+          line-height: 1.3;
+          text-transform: uppercase;
+        }
+
+        .iamagica-promo-title {
+          color: #2a1f3d;
+          font-size: 15px;
+          font-weight: 700;
+          line-height: 1.35;
+          margin-top: 2px;
+        }
+
+        .iamagica-promo-description {
+          color: #5c544a;
+          font-size: 12px;
+          line-height: 1.45;
+          margin-top: 1px;
+        }
+
+        .iamagica-promo-link {
+          color: #2a1f3d;
+          display: inline-block;
+          font-size: 12px;
+          font-weight: 700;
+          line-height: 1.45;
+          margin-top: 4px;
+          text-decoration: underline;
+          text-decoration-thickness: 1px;
+          text-underline-offset: 2px;
+        }
+
+        .iamagica-promo-link:focus-visible {
+          border-radius: 4px;
+          outline: 3px solid rgba(42, 31, 61, 0.42);
+          outline-offset: 3px;
+        }
+
+        @media (max-width: 600px) {
+          .iamagica-promo {
+            margin: 0 0 40px;
+            max-width: none;
+            padding: 12px 14px;
+          }
+
+          .iamagica-promo-logo {
+            flex-basis: 40px;
+            height: 40px;
+            width: 40px;
+          }
+        }
+
         @keyframes spin {
           from {
             transform: rotate(0deg);
